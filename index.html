@@ -1,32 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="VenusArt.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VenusArt</title>
+    <title>VenusArt | Conecta con Artístas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="VenusArt.css">
 </head>
 <body>
-    <header>
-        <h1>Mi Página</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Quiénes somos</a></li>
-            <li><a href="#">Proyecto</a></li>
-            <li><a href="#">Contacto</a></li>
-        </ul>
 
-        <form action="">
-            <input type="search" name="q" placeholder="Buscar">
-            <input type="submit" value="Vamos!">
-        </form>
-    </nav>
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <div class="logo-icon"><i data-lucide="palette"></i></div>
+                <span>Venus<span class="text-gradient">Art</span></span>
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="active">Explorar Artistas</a>
+                <a href="#">Categorías</a>
+            </nav>
+            <div class="nav-actions">
+                <button onclick="openModal()" class="btn-gradient">
+                    <i data-lucide="user-plus"></i>
+                    <span>Unirse como Artista</span>
+                </button>
+            </div>
+        </div>
+    </header>
 
     <main>
-        
+        <section class="hero container">
+            <h1>Descubre el <span class="text-gradient underline-sketch">artísta</span> detrás de la obra</h1>
+            <p>Explora los portafolios de ilustradores, diseñadores y artistas 3D de todo el mundo.</p>
+        </section>
+
+        <section class="filters container">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="Digital">Digital</button>
+                <button class="filter-btn" data-filter="3D">Arte 3D</button>
+                <button class="filter-btn" data-filter="Diseño">Diseño</button>
+                <button class="filter-btn" data-filter="Tradicional">Tradicional</button>
+        </section>
+
+        <section class="artist-grid container" id="artist-gallery">
+            </section>
     </main>
-    
+
+    <div id="uploadModal" class="modal">
+        <div class="modal-content sketchy-border">
+            <div class="modal-header">
+                <h3>Crea tu Perfil de Artista</h3>
+                <button class="btn-gradient"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Completa tu información para aparecer en la galería principal.</p>
+                </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
