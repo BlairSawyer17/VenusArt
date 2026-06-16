@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luna Vásquez — Portafolio · VenusArt</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        /* ── PORTFOLIO PUBLIC — estilos específicos ── */
+        .pf-page {
+            min-height: 100vh;
+            background: var(--bg);
+        }
+
+        /* ── NAV ── */
+        .pf-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.1rem 5%;
+            transition: all .4s var(--ease);
+        }
+
+        .pf-nav.scrolled {
+            background: rgba(248, 247, 255, .92);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 var(--border), var(--sh);
+            padding: .7rem 5%;
+        }
+
+        .pf-nav__back {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--ink2);
+            padding: .45rem 1rem;
+            border-radius: 100px;
+            border: 1.5px solid var(--border);
+            transition: all .25s var(--ease);
+        }
+
+        .pf-nav__back:hover {
+            color: var(--p);
+            border-color: var(--p-l);
+            background: var(--p-ll);
+        }
+
+        .pf-nav__back svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .pf-nav__logo {
+            font-family: var(--display);
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--ink);
+            letter-spacing: -.03em;
+        }
+
+        .pf-nav__logo span {
+            background: linear-gradient(135deg, var(--p), var(--s));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pf-nav__actions {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+        }
+
+        .pf-nav__login {
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--ink3);
+            transition: color .2s;
+        }
+
+        .pf-nav__login:hover {
+            color: var(--p);
+        }
+
+        .pf-btn-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            padding: .45rem 1.1rem;
+            border-radius: 100px;
+            font-size: .8rem;
+            font-weight: 600;
+            background: var(--p-ll);
+            color: var(--p-d);
+            border: 1.5px solid var(--p-l);
+            transition: all .25s var(--ease);
+        }
+
+        .pf-btn-sm:hover {
+            background: var(--p);
+            color: #fff;
+            border-color: var(--p);
+        }
+
+        /* ── HERO PORTAFOLIO ── */
+        .pf-hero {
+            padding: 7rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pf-hero__bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse at 80% 20%, rgba(124, 58, 237, .09) 0%, transparent 55%),
+                radial-gradient(ellipse at 10% 80%, rgba(14, 165, 233, .07) 0%, transparent 50%);
+        }
+
+        .pf-hero__inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: flex-start;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Avatar */
+        .pf-avatar-wrap {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .pf-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--p), var(--s));
+            border: 4px solid var(--surface);
+            box-shadow: var(--sh-lg);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--display);
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .pf-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pf-badge-online {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #34D399;
+            border: 3px solid var(--surface);
+            box-shadow: 0 0 0 2px rgba(52, 211, 153, .3);
+        }
+
+        .pf-badge-online.busy {
+            background: #F59E0B;
+            box-shadow: 0 0 0 2px rgba(245, 158, 11, .3);
+        }
+
+        .pf-badge-online.offline {
+            background: var(--ink3);
+            box-shadow: none;
+        }
+
+        /* Info del perfil */
+        .pf-info {
+            flex: 1;
+            min-width: 240px;
+        }
+
+        .pf-info__name {
+            font-family: var(--display);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            letter-spacing: -.03em;
+            color: var(--ink);
+            line-height: 1.05;
+            margin-bottom: .35rem;
+        }
+
+        .pf-info__handle {
+            font-size: .85rem;
+            color: var(--p);
+            font-weight: 600;
+            margin-bottom: .5rem;
+        }
+
+        .pf-info__meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1rem;
+        }
+
+        .pf-meta-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            font-size: .76rem;
+            font-weight: 500;
+            color: var(--ink3);
+            padding: .28rem .8rem;
+            border-radius: 100px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+
+        .pf-meta-pill svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .pf-meta-pill--avail {
+            background: rgba(52, 211, 153, .1);
+            color: #059669;
+            border-color: rgba(52, 211, 153, .3);
+        }
+
+        .pf-meta-pill--busy {
+            background: rgba(245, 158, 11, .1);
+            color: #B45309;
+            border-color: rgba(245, 158, 11, .3);
+        }
+
+        .pf-info__bio {
+            font-size: .92rem;
+            color: var(--ink2);
+            line-height: 1.7;
+            max-width: 560px;
+            margin-bottom: 1.25rem;
+        }
+
+        .pf-info__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .65rem;
+        }
+
+        .pf-btn-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            padding: .65rem 1.5rem;
+            border-radius: 100px;
+            font-size: .88rem;
+            font-weight: 600;
+            background: var(--p);
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(124, 58, 237, .32);
+            transition: all .3s var(--ease);
+        }
+
+        .pf-btn-contact:hover {
+            background: var(--p-d);
+            transform: translateY(-2px);
+        }
+
+        .pf-btn-contact svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .pf-btn-like {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            padding: .65rem 1.2rem;
+            border-radius: 100px;
+            font-size: .88rem;
+            font-weight: 600;
+            border: 1.5px solid var(--border);
+            color: var(--ink2);
+            transition: all .25s var(--ease);
+        }
+
+        .pf-btn-like:hover,
+        .pf-btn-like.liked {
+            border-color: #F472B6;
+            color: #DB2777;
+            background: rgba(244, 114, 182, .06);
+        }
+
+        .pf-btn-like svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        /* Stats strip */
+        .pf-stats {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: var(--r-lg);
+            box-shadow: var(--sh);
+            min-width: 160px;
+        }
+
+        .pf-stat {
+            text-align: center;
+        }
+
+        .pf-stat__n {
+            font-family: var(--display);
+            font-size: 1.8rem;
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--p), var(--s));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pf-stat__l {
+            font-size: .72rem;
+            color: var(--ink3);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            margin-top: .15rem;
+        }
+
+        .pf-stat-div {
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── TAGS / FILTROS ── */
+        .pf-filters {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: .5rem;
+            padding: 1.5rem 5% 0;
+        }
+
+        .pf-filters__label {
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--ink3);
+            margin-right: .25rem;
+        }
+
+        .pf-filter-btn {
+            padding: .38rem 1rem;
+            border-radius: 100px;
+            font-size: .78rem;
+            font-weight: 600;
+            color: var(--ink2);
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            transition: all .25s var(--ease);
+        }
+
+        .pf-filter-btn:hover,
+        .pf-filter-btn.active {
+            background: var(--p);
+            color: #fff;
+            border-color: var(--p);
+            box-shadow: 0 3px 12px rgba(124, 58, 237, .25);
+        }
+
+        /* ── CARPETAS ── */
+        .pf-folders {
+            padding: 1.5rem 5% 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .65rem;
+            align-items: center;
+        }
+
+        .pf-folders__label {
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--ink3);
+            margin-right: .25rem;
+        }
+
+        .pf-folder-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            padding: .38rem 1rem;
+            border-radius: 100px;
+            font-size: .78rem;
+            font-weight: 600;
+            color: var(--ink2);
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            transition: all .25s var(--ease);
+        }
+
+        .pf-folder-btn svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        .pf-folder-btn:hover,
+        .pf-folder-btn.active {
+            background: var(--p-ll);
+            color: var(--p-d);
+            border-color: var(--p-l);
+        }
+
+        .pf-folder-btn.active {
+            background: var(--p);
+            color: #fff;
+            border-color: var(--p);
+        }
+
+        /* ── MASONRY GRID ── */
+        .pf-masonry-wrap {
+            padding: 2rem 5% 5rem;
+        }
+
+        .pf-masonry {
+            columns: 3;
+            column-gap: 1rem;
+        }
+
+        .pf-card {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            border-radius: var(--r);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(18px) scale(.98);
+            transition: opacity .45s var(--ease), transform .45s var(--ease), box-shadow .35s var(--ease);
+        }
+
+        .pf-card.in {
+            opacity: 1;
+            transform: none;
+        }
+
+        .pf-card:hover {
+            transform: translateY(-4px) scale(1.01) !important;
+            box-shadow: var(--sh-lg);
+        }
+
+        .pf-card.hidden {
+            display: none;
+        }
+
+        .pf-card__canvas {
+            width: 100%;
+            display: block;
+        }
+
+        .pf-card__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(18, 14, 30, .85) 0%, rgba(18, 14, 30, .15) 55%, transparent 100%);
+            opacity: 0;
+            transition: opacity .3s var(--ease);
+        }
+
+        .pf-card:hover .pf-card__overlay {
+            opacity: 1;
+        }
+
+        .pf-card__footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.2rem .9rem .75rem;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: opacity .3s var(--ease), transform .3s var(--ease);
+        }
+
+        .pf-card:hover .pf-card__footer {
+            opacity: 1;
+            transform: none;
+        }
+
+        .pf-card__title {
+            font-size: .85rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: .25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .pf-card__row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pf-card__tag {
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: .22rem .6rem;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, .15);
+            color: rgba(255, 255, 255, .8);
+            backdrop-filter: blur(6px);
+        }
+
+        .pf-card__like-btn {
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+            font-size: .75rem;
+            color: rgba(255, 255, 255, .7);
+            padding: .3rem .6rem;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, .1);
+            backdrop-filter: blur(6px);
+            transition: all .2s;
+        }
+
+        .pf-card__like-btn:hover {
+            background: rgba(244, 114, 182, .3);
+            color: #fff;
+        }
+
+        .pf-card__like-btn.liked {
+            color: #F472B6;
+        }
+
+        .pf-card__like-btn svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* ── LIGHTBOX ── */
+        .lb-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 700;
+            background: rgba(12, 9, 24, .88);
+            backdrop-filter: blur(16px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            gap: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s var(--ease);
+        }
+
+        .lb-backdrop.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lb-arrow {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .15);
+            color: rgba(255, 255, 255, .7);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all .2s;
+            cursor: pointer;
+        }
+
+        .lb-arrow:hover {
+            background: rgba(255, 255, 255, .18);
+            color: #fff;
+        }
+
+        .lb-arrow svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .lb-content {
+            background: var(--surface);
+            border-radius: var(--r-lg);
+            max-width: 720px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: var(--sh-lg);
+            transform: scale(.94);
+            transition: transform .3s var(--ease);
+        }
+
+        .lb-backdrop.open .lb-content {
+            transform: scale(1);
+        }
+
+        .lb-canvas {
+            width: 100%;
+            display: block;
+            border-radius: var(--r-lg) var(--r-lg) 0 0;
+        }
+
+        .lb-body {
+            padding: 1.25rem;
+        }
+
+        .lb-body h3 {
+            font-family: var(--display);
+            font-size: 1.3rem;
+            color: var(--ink);
+            margin-bottom: .35rem;
+        }
+
+        .lb-body p {
+            font-size: .88rem;
+            color: var(--ink2);
+            line-height: 1.65;
+            margin-bottom: .85rem;
+        }
+
+        .lb-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            margin-bottom: 1rem;
+        }
+
+        .lb-tags span {
+            font-size: .72rem;
+            font-weight: 600;
+            padding: .25rem .75rem;
+            border-radius: 100px;
+            background: var(--p-ll);
+            color: var(--p-d);
+            border: 1px solid rgba(124, 58, 237, .18);
+        }
+
+        .lb-actions {
+            display: flex;
+            gap: .65rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .lb-like {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            font-size: .85rem;
+            font-weight: 600;
+            color: var(--ink3);
+            padding: .55rem 1.1rem;
+            border-radius: 100px;
+            border: 1.5px solid var(--border);
+            transition: all .2s;
+        }
+
+        .lb-like:hover,
+        .lb-like.liked {
+            border-color: #F472B6;
+            color: #DB2777;
+            background: rgba(244, 114, 182, .07);
+        }
+
+        .lb-like svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .lb-close {
+            position: fixed;
+            top: 1.2rem;
+            right: 1.2rem;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 255, 255, .18);
+            color: rgba(255, 255, 255, .8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+            z-index: 710;
+        }
+
+        .lb-close:hover {
+            background: rgba(255, 255, 255, .2);
+            color: #fff;
+        }
+
+        .lb-close svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .lb-counter {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .5);
+            background: rgba(255, 255, 255, .06);
+            padding: .35rem 1rem;
+            border-radius: 100px;
+            backdrop-filter: blur(6px);
+            z-index: 710;
+            transition: opacity .3s;
+        }
+
+        /* ── MENSAJE / PROPUESTA ── */
+        .msg-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 800;
+            background: rgba(18, 14, 30, .7);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s var(--ease);
+        }
+
+        .msg-backdrop.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .msg-modal {
+            background: var(--surface);
+            border-radius: var(--r-lg);
+            border: 1px solid var(--border);
+            box-shadow: var(--sh-lg);
+            max-width: 480px;
+            width: 100%;
+            padding: 2rem;
+            transform: scale(.95) translateY(16px);
+            transition: transform .3s var(--ease);
+        }
+
+        .msg-backdrop.open .msg-modal {
+            transform: none;
+        }
+
+        .msg-modal__head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .msg-modal__head h3 {
+            font-family: var(--display);
+            font-size: 1.2rem;
+            color: var(--ink);
+        }
+
+        .msg-close {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--surface2);
+            color: var(--ink3);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .9rem;
+            transition: all .2s;
+        }
+
+        .msg-close:hover {
+            background: var(--p-ll);
+            color: var(--p-d);
+            border-color: var(--p-l);
+        }
+
+        .msg-close svg {
+            width: 11px;
+            height: 11px;
+        }
+
+        .msg-field {
+            margin-bottom: .85rem;
+        }
+
+        .msg-label {
+            display: block;
+            font-size: .76rem;
+            font-weight: 600;
+            letter-spacing: .03em;
+            color: var(--ink3);
+            margin-bottom: .3rem;
+        }
+
+        .msg-input,
+        .msg-textarea {
+            width: 100%;
+            padding: .55rem .9rem;
+            border: 1.5px solid var(--border);
+            border-radius: var(--r);
+            background: var(--bg);
+            font-family: var(--body);
+            font-size: .86rem;
+            color: var(--ink);
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+            resize: none;
+        }
+
+        .msg-input:focus,
+        .msg-textarea:focus {
+            border-color: var(--p-l);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, .1);
+            background: var(--surface);
+        }
+
+        .msg-textarea {
+            min-height: 110px;
+        }
+
+        .msg-btn {
+            width: 100%;
+            padding: .7rem;
+            border-radius: 100px;
+            background: var(--p);
+            color: #fff;
+            font-family: var(--body);
+            font-size: .9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, .28);
+            border: none;
+            transition: all .25s var(--ease);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .45rem;
+        }
+
+        .msg-btn:hover {
+            background: var(--p-d);
+            transform: translateY(-1px);
+        }
+
+        .msg-success {
+            display: none;
+            text-align: center;
+            padding: .75rem 0;
+        }
+
+        .msg-success.show {
+            display: block;
+        }
+
+        .msg-success__icon {
+            font-size: 2rem;
+            margin-bottom: .5rem;
+        }
+
+        .msg-success strong {
+            display: block;
+            font-size: 1rem;
+            color: var(--ink);
+            margin-bottom: .3rem;
+        }
+
+        .msg-success p {
+            font-size: .84rem;
+            color: var(--ink3);
+        }
+
+        /* ── EMPTY ── */
+        .pf-empty {
+            text-align: center;
+            padding: 5rem 1rem;
+        }
+
+        .pf-empty__icon {
+            font-size: 3rem;
+            opacity: .25;
+            margin-bottom: 1rem;
+        }
+
+        .pf-empty h3 {
+            font-family: var(--display);
+            font-size: 1.3rem;
+            color: var(--ink);
+            margin-bottom: .5rem;
+        }
+
+        .pf-empty p {
+            font-size: .9rem;
+            color: var(--ink3);
+        }
+
+        /* ── FOOTER ── */
+        .pf-footer {
+            background: #0C0918;
+            color: rgba(255, 255, 255, .3);
+            padding: 1.5rem 5%;
+            font-size: .78rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .pf-footer a {
+            color: rgba(255, 255, 255, .3);
+            transition: color .2s;
+        }
+
+        .pf-footer a:hover {
+            color: var(--p-l);
+        }
+
+        .pf-footer .shield {
+            color: var(--p-l);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .pf-masonry {
+                columns: 2;
+            }
+
+            .pf-stats {
+                flex-direction: row;
+                justify-content: center;
+                min-width: auto;
+                width: 100%;
+            }
+
+            .pf-stat-div {
+                width: 1px;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .pf-masonry {
+                columns: 2;
+            }
+
+            .pf-hero__inner {
+                flex-direction: column;
+            }
+
+            .pf-stats {
+                display: none;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .pf-masonry {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+
+<body class="pf-page">
+    <div class="noise" aria-hidden="true"></div>
+
+    <!-- NAV -->
+    <nav class="pf-nav" id="pfNav">
+        <a href="index.html" class="pf-nav__back">
+            <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 2L4 7l5 5" />
+            </svg>
+            Explorar
+        </a>
+        <a href="index.html" class="pf-nav__logo"><span>V</span>enusArt</a>
+        <div class="pf-nav__actions">
+            <a href="#" class="pf-nav__login" id="navLogin">Iniciar sesión</a>
+            <a href="#" class="pf-btn-sm" id="navRegister">Unirme gratis</a>
+        </div>
+    </nav>
+
+    <!-- HERO DEL PERFIL -->
+    <section class="pf-hero">
+        <div class="pf-hero__bg" aria-hidden="true"></div>
+        <div class="pf-hero__inner reveal">
+
+            <!-- Avatar -->
+            <div class="pf-avatar-wrap">
+                <div class="pf-avatar" id="pfAvatar">
+                    <canvas id="avatarCanvas" width="120" height="120"></canvas>
+                </div>
+                <span class="pf-badge-online" id="availBadge" title="Disponible para proyectos"></span>
+            </div>
+
+            <!-- Info -->
+            <div class="pf-info">
+                <h1 class="pf-info__name" id="pfName">Luna Vásquez</h1>
+                <p class="pf-info__handle" id="pfHandle">@luna.art</p>
+                <div class="pf-info__meta">
+                    <span class="pf-meta-pill">
+                        <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" aria-hidden="true">
+                            <path d="M6.5 1a4 4 0 0 1 4 4c0 2.8-4 7-4 7S2.5 7.8 2.5 5a4 4 0 0 1 4-4z" />
+                            <circle cx="6.5" cy="5" r="1.2" />
+                        </svg>
+                        <span id="pfCity">Medellín, CO</span>
+                    </span>
+                    <span class="pf-meta-pill" id="pfDiscipline">Ilustración</span>
+                    <span class="pf-meta-pill pf-meta-pill--avail" id="pfAvailPill">✦ Disponible</span>
+                </div>
+                <p class="pf-info__bio" id="pfBio">Ilustradora editorial y de personajes. Me muevo entre la acuarela
+                    digital y el diseño de portadas. Trabajo con editoriales, estudios de juegos y marcas que aprecian
+                    lo hecho a mano.</p>
+                <div class="pf-info__actions">
+                    <button class="pf-btn-contact" id="btnContact">
+                        <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.7"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="1" y="3" width="13" height="9" rx="1.5" />
+                            <path d="M1 4.5l6.5 4 6.5-4" />
+                        </svg>
+                        Enviar propuesta
+                    </button>
+                    <button class="pf-btn-like" id="btnLike">
+                        <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.7"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M7.5 12.5S1.5 9 1.5 5a3 3 0 0 1 6 0 3 3 0 0 1 6 0c0 4-6 7.5-6 7.5z" />
+                        </svg>
+                        <span id="likeCount">248</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="pf-stats reveal">
+                <div class="pf-stat">
+                    <div class="pf-stat__n" id="statObras">24</div>
+                    <div class="pf-stat__l">Obras</div>
+                </div>
+                <div class="pf-stat-div"></div>
+                <div class="pf-stat">
+                    <div class="pf-stat__n" id="statLikes">248</div>
+                    <div class="pf-stat__l">Likes</div>
+                </div>
+                <div class="pf-stat-div"></div>
+                <div class="pf-stat">
+                    <div class="pf-stat__n" id="statProyectos">12</div>
+                    <div class="pf-stat__l">Proyectos</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CARPETAS -->
+    <div class="pf-folders reveal" id="pfFolders">
+        <span class="pf-folders__label">Carpetas</span>
+        <button class="pf-folder-btn active" data-folder="all">
+            <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M1 3.5h11v7.5H1z" />
+                <path d="M1 3.5l2-2h3l1 2" />
+            </svg>
+            Todo
+        </button>
+        <!-- Las carpetas se generan por JS -->
+    </div>
+
+    <!-- FILTROS POR TAG -->
+    <div class="pf-filters reveal" id="pfFilters">
+        <span class="pf-filters__label">Filtrar</span>
+        <button class="pf-filter-btn active" data-filter="all">Todas</button>
+        <!-- Los tags se generan por JS -->
+    </div>
+
+    <!-- GRID -->
+    <main class="pf-masonry-wrap">
+        <div class="pf-masonry" id="pfGrid" role="list"></div>
+        <div class="pf-empty" id="pfEmpty" hidden>
+            <div class="pf-empty__icon">🎨</div>
+            <h3>Sin obras aquí</h3>
+            <p>Prueba con otro filtro o carpeta.</p>
+        </div>
+    </main>
+
+    <!-- LIGHTBOX -->
+    <div class="lb-backdrop" id="lbBackdrop" role="dialog" aria-modal="true" aria-label="Vista de obra">
+        <button class="lb-arrow" id="lbPrev" aria-label="Obra anterior">
+            <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M11 4L6 9l5 5" />
+            </svg>
+        </button>
+        <div class="lb-content">
+            <canvas class="lb-canvas" id="lbCanvas" width="720" height="480"></canvas>
+            <div class="lb-body">
+                <h3 id="lbTitle">—</h3>
+                <p id="lbDesc">—</p>
+                <div class="lb-tags" id="lbTags"></div>
+                <div class="lb-actions">
+                    <button class="lb-like" id="lbLike">
+                        <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.7"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M7.5 12.5S1.5 9 1.5 5a3 3 0 0 1 6 0 3 3 0 0 1 6 0c0 4-6 7.5-6 7.5z" />
+                        </svg>
+                        <span id="lbLikeCount">0</span> likes
+                    </button>
+                    <button class="pf-btn-contact" id="lbContact" style="font-size:.82rem;padding:.5rem 1.1rem">
+                        Enviar propuesta
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button class="lb-arrow" id="lbNext" aria-label="Obra siguiente">
+            <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M7 4l5 5-5 5" />
+            </svg>
+        </button>
+    </div>
+    <button class="lb-close" id="lbClose" aria-label="Cerrar lightbox">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            aria-hidden="true">
+            <path d="M2 2l10 10M12 2 2 12" />
+        </svg>
+    </button>
+    <div class="lb-counter" id="lbCounter">1 / 24</div>
+
+    <!-- MODAL MENSAJE -->
+    <div class="msg-backdrop" id="msgBackdrop" role="dialog" aria-modal="true" aria-label="Enviar propuesta">
+        <div class="msg-modal">
+            <div class="msg-modal__head">
+                <h3>Enviar propuesta a <span id="msgArtistName">Luna</span></h3>
+                <button class="msg-close" id="msgClose" aria-label="Cerrar">
+                    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        aria-hidden="true">
+                        <path d="M2 2l10 10M12 2 2 12" />
+                    </svg>
+                </button>
+            </div>
+            <div id="msgForm">
+                <div class="msg-field">
+                    <label class="msg-label" for="msgName">Tu nombre</label>
+                    <input class="msg-input" type="text" id="msgName" placeholder="Ana López">
+                </div>
+                <div class="msg-field">
+                    <label class="msg-label" for="msgEmail">Tu correo</label>
+                    <input class="msg-input" type="email" id="msgEmail" placeholder="ana@estudio.com">
+                </div>
+                <div class="msg-field">
+                    <label class="msg-label" for="msgSubject">Asunto</label>
+                    <input class="msg-input" type="text" id="msgSubject"
+                        placeholder="Proyecto de ilustración editorial">
+                </div>
+                <div class="msg-field">
+                    <label class="msg-label" for="msgBody">Mensaje</label>
+                    <textarea class="msg-textarea" id="msgBody"
+                        placeholder="Cuéntale sobre tu proyecto, presupuesto y plazos…"></textarea>
+                </div>
+                <button class="msg-btn" id="msgSend">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.7"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M13 7.5H2M8.5 3 13 7.5 8.5 12" />
+                    </svg>
+                    Enviar propuesta
+                </button>
+            </div>
+            <div class="msg-success" id="msgSuccess">
+                <div class="msg-success__icon">💌</div>
+                <strong>¡Propuesta enviada!</strong>
+                <p>Luna recibirá tu mensaje y te responderá pronto.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="pf-footer">
+        <a href="index.html"><span
+                style="font-family:var(--display);font-weight:900;letter-spacing:-.02em;color:rgba(255,255,255,.5)"><span
+                    style="background:linear-gradient(135deg,var(--p),var(--s));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Venus</span>Art</span></a>
+        <span>Portafolio de <strong style="color:rgba(255,255,255,.5)" id="footerName">Luna Vásquez</strong></span>
+        <span class="shield">🛡 Derechos protegidos</span>
+    </footer>
+
+    <script>
+        /* =====================================================
+           PORTFOLIO.JS — Vista pública
+        ===================================================== */
+
+        /* ── Datos del artista (en producción vendrían del backend) ── */
+        const ARTIST = {
+            name: 'Luna Vásquez',
+            handle: '@luna.art',
+            city: 'Medellín, CO',
+            discipline: 'Ilustración',
+            available: true,
+            bio: 'Ilustradora editorial y de personajes. Me muevo entre la acuarela digital y el diseño de portadas. Trabajo con editoriales, estudios de juegos y marcas que aprecian lo hecho a mano.',
+            colors: ['#7C3AED', '#A78BFA', '#EDE9FE'],
+            stats: { obras: 24, likes: 248, proyectos: 12 },
+        };
+
+        const FOLDERS = [
+            { id: 'all', name: 'Todo' },
+            { id: 'editorial', name: 'Editorial' },
+            { id: 'personajes', name: 'Personajes' },
+            { id: 'portadas', name: 'Portadas' },
+            { id: 'personal', name: 'Personal' },
+        ];
+
+        const WORKS = [
+            { id: 1, title: 'Jardín de sombras', desc: 'Serie editorial explorando la naturaleza y la melancolía urbana.', tags: ['Editorial', 'Acuarela', 'Serie'], folder: 'editorial', colors: ['#7C3AED', '#A78BFA', '#C4B5FD'], size: 'tall', likes: 42 },
+            { id: 2, title: 'Mariposa mecánica', desc: 'Personaje para novela gráfica de ciencia ficción.', tags: ['Personaje', 'Sci-fi', 'Color'], folder: 'personajes', colors: ['#0369A1', '#38BDF8', '#BAE6FD'], size: 'normal', likes: 31 },
+            { id: 3, title: 'La última librería', desc: 'Portada para colección de cuentos latinoamericanos.', tags: ['Portada', 'Libro', 'Cálido'], folder: 'portadas', colors: ['#B45309', '#F59E0B', '#FEF3C7'], size: 'normal', likes: 58 },
+            { id: 4, title: 'Raíces', desc: 'Exploración personal sobre identidad y pertenencia.', tags: ['Personal', 'Expresión', 'Tierra'], folder: 'personal', colors: ['#166534', '#22C55E', '#D1FAE5'], size: 'wide', likes: 77 },
+            { id: 5, title: 'Criatura del páramo', desc: 'Diseño de criatura basado en el ecosistema de páramo colombiano.', tags: ['Criatura', 'Naturaleza', 'Colombia'], folder: 'personajes', colors: ['#065F46', '#10B981', '#A7F3D0'], size: 'tall', likes: 93 },
+            { id: 6, title: 'Noche boreal', desc: 'Portada para novela de misterio escandinavo.', tags: ['Portada', 'Noche', 'Misterio'], folder: 'portadas', colors: ['#1C3D5A', '#1D4ED8', '#DBEAFE'], size: 'normal', likes: 45 },
+            { id: 7, title: 'Mercado de los sueños', desc: 'Ilustración editorial para revista cultural bogotana.', tags: ['Editorial', 'Ciudad', 'Sueños'], folder: 'editorial', colors: ['#831843', '#BE185D', '#FBCFE8'], size: 'normal', likes: 62 },
+            { id: 8, title: 'Autorretrato en azul', desc: 'Exploración introspectiva con paleta monocromática.', tags: ['Personal', 'Retrato', 'Azul'], folder: 'personal', colors: ['#1E3A5F', '#2563EB', '#BFDBFE'], size: 'normal', likes: 88 },
+            { id: 9, title: 'La guardiana del río', desc: 'Personaje mitológico colombiano para proyecto de videojuego.', tags: ['Personaje', 'Mitología', 'Colombia'], folder: 'personajes', colors: ['#065F46', '#34D399', '#A7F3D0'], size: 'wide', likes: 114 },
+            { id: 10, title: 'Temporada de lluvias', desc: 'Portada para poemario de autor colombiano.', tags: ['Portada', 'Poesía', 'Lluvia'], folder: 'portadas', colors: ['#5B21B6', '#7C3AED', '#DDD6FE'], size: 'tall', likes: 39 },
+            { id: 11, title: 'Flores de papel', desc: 'Serie de postales ilustradas para editorial independiente.', tags: ['Editorial', 'Flores', 'Postal'], folder: 'editorial', colors: ['#9D174D', '#EC4899', '#FCE7F3'], size: 'normal', likes: 55 },
+            { id: 12, title: 'El inventor', desc: 'Personaje steampunk para novela juvenil.', tags: ['Personaje', 'Steampunk', 'Juvenil'], folder: 'personajes', colors: ['#78350F', '#D97706', '#FEF3C7'], size: 'normal', likes: 27 },
+        ];
+
+        /* ── Tags únicos ── */
+        const ALL_TAGS = [...new Set(WORKS.flatMap(w => w.tags))];
+
+        /* ── Estado ── */
+        let currentFolder = 'all';
+        let currentFilter = 'all';
+        let likedWorks = new Set();
+        let profileLiked = false;
+        let lbIndex = 0;
+        let visibleWorks = [];
+
+        /* ── Dibujar canvas de arte ── */
+        function drawCanvas(canvas, colors, title, seed, w = 400, h = 300) {
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            const gr = ctx.createRadialGradient(w * .35, h * .4, 0, w * .6, h * .6, Math.max(w, h) * .9);
+            gr.addColorStop(0, colors[0]);
+            gr.addColorStop(.5, colors[1] || colors[0]);
+            gr.addColorStop(1, colors[2] || colors[0]);
+            ctx.fillStyle = gr;
+            ctx.fillRect(0, 0, w, h);
+            const rng = (() => { let s = seed * 9301 + 49297; return () => { s = (s * 9301 + 49297) % 233280; return s / 233280; }; })();
+            ctx.save(); ctx.globalAlpha = .18;
+            for (let i = 0; i < 4; i++) {
+                const x = rng() * w, y = rng() * h, r = 25 + rng() * 70;
+                const g2 = ctx.createRadialGradient(x, y, 0, x, y, r);
+                g2.addColorStop(0, '#fff'); g2.addColorStop(1, 'transparent');
+                ctx.fillStyle = g2; ctx.beginPath();
+                ctx.ellipse(x, y, r, r * (.4 + rng() * .8), rng() * Math.PI, 0, Math.PI * 2); ctx.fill();
+            }
+            ctx.restore();
+            ctx.save(); ctx.globalAlpha = .14; ctx.fillStyle = '#fff';
+            const words = title.split(' ');
+            const mid = Math.ceil(words.length / 2);
+            const l1 = words.slice(0, mid).join(' ');
+            const l2 = words.slice(mid).join(' ');
+            ctx.font = `900 ${Math.floor(h * .11)}px 'Playfair Display',Georgia,serif`;
+            ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            if (l2) { ctx.fillText(l1, w / 2, h * .43); ctx.fillText(l2, w / 2, h * .57); }
+            else ctx.fillText(l1, w / 2, h / 2);
+            ctx.restore();
+        }
+
+        function drawAvatarCanvas(canvas, colors) {
+            const s = canvas.width; const ctx = canvas.getContext('2d');
+            const gr = ctx.createLinearGradient(0, 0, s, s);
+            gr.addColorStop(0, colors[0]); gr.addColorStop(1, colors[1] || colors[0]);
+            ctx.beginPath(); ctx.arc(s / 2, s / 2, s / 2, 0, Math.PI * 2);
+            ctx.fillStyle = gr; ctx.fill();
+            ctx.fillStyle = 'rgba(255,255,255,.85)';
+            ctx.font = `900 ${Math.floor(s * .38)}px 'Playfair Display',Georgia,serif`;
+            ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            ctx.fillText(ARTIST.name.split(' ').map(n => n[0]).slice(0, 2).join(''), s / 2, s / 2 + 2);
+        }
+
+        /* ── Construir tarjeta ── */
+        function buildCard(work) {
+            const dims = work.size === 'tall' ? { w: 400, h: 560 } : work.size === 'wide' ? { w: 700, h: 380 } : { w: 400, h: 290 + Math.floor(Math.random() * 120) };
+            const card = document.createElement('article');
+            card.className = 'pf-card';
+            card.dataset.id = work.id;
+            card.dataset.folder = work.folder;
+            card.dataset.tags = work.tags.map(t => t.toLowerCase()).join(',');
+            card.setAttribute('role', 'listitem');
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-label', `${work.title} — ${work.tags.join(', ')}`);
+
+            const canvas = document.createElement('canvas');
+            canvas.className = 'pf-card__canvas';
+            canvas.style.aspectRatio = `${dims.w}/${dims.h}`;
+
+            const overlay = document.createElement('div'); overlay.className = 'pf-card__overlay'; overlay.setAttribute('aria-hidden', 'true');
+            const footer = document.createElement('div'); footer.className = 'pf-card__footer';
+
+            const likeBtn = document.createElement('button');
+            likeBtn.className = 'pf-card__like-btn';
+            likeBtn.setAttribute('aria-label', `${likedWorks.has(work.id) ? 'Quitar like de' : 'Dar like a'} ${work.title}`);
+            likeBtn.innerHTML = `<svg viewBox="0 0 15 15" fill="${likedWorks.has(work.id) ? '#F472B6' : 'none'}" stroke="${likedWorks.has(work.id) ? '#F472B6' : 'currentColor'}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 12.5S1.5 9 1.5 5a3 3 0 0 1 6 0 3 3 0 0 1 6 0c0 4-6 7.5-6 7.5z"/></svg><span>${work.likes}</span>`;
+            if (likedWorks.has(work.id)) likeBtn.classList.add('liked');
+
+            footer.innerHTML = `<div class="pf-card__title">${work.title}</div><div class="pf-card__row"><span class="pf-card__tag">${work.tags[0]}</span></div>`;
+            footer.querySelector('.pf-card__row').appendChild(likeBtn);
+
+            card.appendChild(canvas);
+            card.appendChild(overlay);
+            card.appendChild(footer);
+
+            setTimeout(() => drawCanvas(canvas, work.colors, work.title, work.id, dims.w, dims.h), 0);
+
+            /* Click para lightbox */
+            card.addEventListener('click', e => {
+                if (e.target.closest('.pf-card__like-btn')) return;
+                openLightbox(work.id);
+            });
+            card.addEventListener('keydown', e => { if (e.key === 'Enter') openLightbox(work.id); });
+
+            /* Like en tarjeta */
+            likeBtn.addEventListener('click', e => {
+                e.stopPropagation();
+                toggleWorkLike(work.id, likeBtn);
+            });
+
+            return card;
+        }
+
+        /* ── Renderizar grid ── */
+        function renderGrid() {
+            const grid = document.getElementById('pfGrid');
+            grid.innerHTML = '';
+
+            visibleWorks = WORKS.filter(w => {
+                const folderOk = currentFolder === 'all' || w.folder === currentFolder;
+                const filterOk = currentFilter === 'all' || w.tags.map(t => t.toLowerCase()).includes(currentFilter.toLowerCase());
+                return folderOk && filterOk;
+            });
+
+            const empty = document.getElementById('pfEmpty');
+            if (visibleWorks.length === 0) { empty.hidden = false; return; }
+            empty.hidden = true;
+
+            visibleWorks.forEach((work, i) => {
+                const card = buildCard(work);
+                grid.appendChild(card);
+                setTimeout(() => card.classList.add('in'), 40 + i * 40);
+            });
+            document.getElementById('statObras').textContent = WORKS.length;
+        }
+
+        /* ── Construir carpetas y filtros ── */
+        function buildFolders() {
+            const wrap = document.getElementById('pfFolders');
+            // Limpiar, mantener label
+            wrap.querySelectorAll('.pf-folder-btn').forEach(b => b.remove());
+            FOLDERS.forEach(f => {
+                const btn = document.createElement('button');
+                btn.className = 'pf-folder-btn' + (f.id === 'all' ? ' active' : '');
+                btn.dataset.folder = f.id;
+                btn.innerHTML = `<svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 3.5h11v7.5H1z"/><path d="M1 3.5l2-2h3l1 2"/></svg>${f.name}`;
+                btn.addEventListener('click', () => {
+                    wrap.querySelectorAll('.pf-folder-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFolder = f.id;
+                    currentFilter = 'all';
+                    document.querySelectorAll('.pf-filter-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelector('.pf-filter-btn[data-filter="all"]')?.classList.add('active');
+                    renderGrid();
+                });
+                wrap.appendChild(btn);
+            });
+        }
+
+        function buildFilters() {
+            const wrap = document.getElementById('pfFilters');
+            wrap.querySelectorAll('.pf-filter-btn:not([data-filter="all"])').forEach(b => b.remove());
+            ALL_TAGS.forEach(tag => {
+                const btn = document.createElement('button');
+                btn.className = 'pf-filter-btn';
+                btn.dataset.filter = tag;
+                btn.textContent = tag;
+                btn.addEventListener('click', () => {
+                    wrap.querySelectorAll('.pf-filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilter = tag;
+                    renderGrid();
+                });
+                wrap.appendChild(btn);
+            });
+            document.querySelector('.pf-filter-btn[data-filter="all"]')?.addEventListener('click', () => {
+                document.querySelectorAll('.pf-filter-btn').forEach(b => b.classList.remove('active'));
+                document.querySelector('.pf-filter-btn[data-filter="all"]').classList.add('active');
+                currentFilter = 'all';
+                renderGrid();
+            });
+        }
+
+        /* ── Lightbox ── */
+        function openLightbox(workId) {
+            const idx = visibleWorks.findIndex(w => w.id === workId);
+            if (idx === -1) return;
+            lbIndex = idx;
+            renderLightbox();
+            document.getElementById('lbBackdrop').classList.add('open');
+            document.getElementById('lbClose').style.display = 'flex';
+            document.getElementById('lbCounter').style.opacity = '1';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            document.getElementById('lbBackdrop').classList.remove('open');
+            document.getElementById('lbClose').style.display = 'none';
+            document.getElementById('lbCounter').style.opacity = '0';
+            document.body.style.overflow = '';
+        }
+        function renderLightbox() {
+            const work = visibleWorks[lbIndex];
+            if (!work) return;
+            const canvas = document.getElementById('lbCanvas');
+            drawCanvas(canvas, work.colors, work.title, work.id + 50, 720, 420);
+            document.getElementById('lbTitle').textContent = work.title;
+            document.getElementById('lbDesc').textContent = work.desc;
+            const tagsEl = document.getElementById('lbTags');
+            tagsEl.innerHTML = '';
+            work.tags.forEach(t => { const s = document.createElement('span'); s.textContent = t; tagsEl.appendChild(s); });
+            const likeEl = document.getElementById('lbLike');
+            const liked = likedWorks.has(work.id);
+            document.getElementById('lbLikeCount').textContent = work.likes;
+            likeEl.classList.toggle('liked', liked);
+            likeEl.querySelector('svg').setAttribute('fill', liked ? '#F472B6' : 'none');
+            likeEl.querySelector('svg').setAttribute('stroke', liked ? '#F472B6' : 'currentColor');
+            document.getElementById('lbCounter').textContent = `${lbIndex + 1} / ${visibleWorks.length}`;
+        }
+
+        function toggleWorkLike(workId, btn) {
+            const work = WORKS.find(w => w.id === workId);
+            if (!work) return;
+            if (likedWorks.has(workId)) { likedWorks.delete(workId); work.likes--; }
+            else { likedWorks.add(workId); work.likes++; }
+            if (btn) {
+                btn.classList.toggle('liked', likedWorks.has(workId));
+                const svg = btn.querySelector('svg');
+                svg.setAttribute('fill', likedWorks.has(workId) ? '#F472B6' : 'none');
+                svg.setAttribute('stroke', likedWorks.has(workId) ? '#F472B6' : 'currentColor');
+                btn.querySelector('span').textContent = work.likes;
+            }
+            // Actualizar total de likes en stats
+            const total = WORKS.reduce((s, w) => s + w.likes, 0);
+            document.getElementById('statLikes').textContent = total;
+            document.getElementById('likeCount').textContent = total;
+        }
+
+        document.getElementById('lbPrev').addEventListener('click', () => {
+            lbIndex = (lbIndex - 1 + visibleWorks.length) % visibleWorks.length;
+            renderLightbox();
+        });
+        document.getElementById('lbNext').addEventListener('click', () => {
+            lbIndex = (lbIndex + 1) % visibleWorks.length;
+            renderLightbox();
+        });
+        document.getElementById('lbClose').addEventListener('click', closeLightbox);
+        document.getElementById('lbBackdrop').addEventListener('click', e => {
+            if (e.target === e.currentTarget) closeLightbox();
+        });
+        document.getElementById('lbLike').addEventListener('click', () => {
+            const work = visibleWorks[lbIndex];
+            if (work) { toggleWorkLike(work.id, null); renderLightbox(); }
+        });
+        document.getElementById('lbContact').addEventListener('click', () => { closeLightbox(); openMsg(); });
+
+        /* ── Teclado lightbox ── */
+        document.addEventListener('keydown', e => {
+            if (!document.getElementById('lbBackdrop').classList.contains('open')) return;
+            if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % visibleWorks.length; renderLightbox(); }
+            if (e.key === 'ArrowLeft') { lbIndex = (lbIndex - 1 + visibleWorks.length) % visibleWorks.length; renderLightbox(); }
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        /* ── Modal mensaje ── */
+        function openMsg() {
+            document.getElementById('msgArtistName').textContent = ARTIST.name.split(' ')[0];
+            document.getElementById('msgSuccess').classList.remove('show');
+            document.getElementById('msgForm').style.display = 'block';
+            document.getElementById('msgBackdrop').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMsg() {
+            document.getElementById('msgBackdrop').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        document.getElementById('msgClose').addEventListener('click', closeMsg);
+        document.getElementById('msgBackdrop').addEventListener('click', e => { if (e.target === e.currentTarget) closeMsg(); });
+        document.getElementById('btnContact').addEventListener('click', openMsg);
+        document.getElementById('msgSend').addEventListener('click', () => {
+            const name = document.getElementById('msgName').value.trim();
+            const email = document.getElementById('msgEmail').value.trim();
+            const body = document.getElementById('msgBody').value.trim();
+            if (!name || !email || !body) { alert('Por favor completa nombre, correo y mensaje.'); return; }
+            const btn = document.getElementById('msgSend');
+            btn.textContent = 'Enviando…'; btn.disabled = true;
+            setTimeout(() => {
+                document.getElementById('msgForm').style.display = 'none';
+                document.getElementById('msgSuccess').classList.add('show');
+                setTimeout(closeMsg, 2800);
+            }, 1100);
+        });
+
+        /* ── Like del perfil ── */
+        document.getElementById('btnLike').addEventListener('click', function () {
+            profileLiked = !profileLiked;
+            this.classList.toggle('liked', profileLiked);
+            const count = parseInt(document.getElementById('likeCount').textContent);
+            document.getElementById('likeCount').textContent = profileLiked ? count + 1 : count - 1;
+        });
+
+        /* ── Nav scroll ── */
+        window.addEventListener('scroll', () => {
+            document.getElementById('pfNav').classList.toggle('scrolled', scrollY > 50);
+        }, { passive: true });
+
+        /* ── Reveal ── */
+        const ro = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+        }, { threshold: .08 });
+        document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+        setTimeout(() => document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible')), 100);
+
+        /* ── Inicializar ── */
+        drawAvatarCanvas(document.getElementById('avatarCanvas'), ARTIST.colors);
+        buildFolders();
+        buildFilters();
+        renderGrid();
+
+        /* ── Populate UI con datos del artista ── */
+        document.getElementById('pfName').textContent = ARTIST.name;
+        document.getElementById('pfHandle').textContent = ARTIST.handle;
+        document.getElementById('pfCity').textContent = ARTIST.city;
+        document.getElementById('pfDiscipline').textContent = ARTIST.discipline;
+        document.getElementById('pfBio').textContent = ARTIST.bio;
+        document.getElementById('footerName').textContent = ARTIST.name;
+        document.getElementById('msgArtistName').textContent = ARTIST.name.split(' ')[0];
+
+        if (!ARTIST.available) {
+            document.getElementById('availBadge').classList.add('busy');
+            document.getElementById('pfAvailPill').className = 'pf-meta-pill pf-meta-pill--busy';
+            document.getElementById('pfAvailPill').textContent = '⏸ Ocupada';
+        }
+    </script>
+</body>
+
+</html>

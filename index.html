@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VenusArt | Tu Portafolio Online</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Kalam:wght@300;400;700&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-logo">
+            <a href="#" class="nav-logo-text">
+                Venus<span class="span-logo">Art</span>
+            </a>
+        </div>
+        <div class="nav-btn">
+            <a href="explore.html" class="mas-info">Saber más</a>
+            <a href="#" class="log-in">Inicia sesión</a>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="header-content">
+            <div class="header-text">
+                <h1>Descubre a artistas<br><span>El arte sigue siendo humano</span></h1>
+                <p>Explora obras de ilustradores, animadores, conceptualistas y diseñadores gráficos de toda
+                    Latinoamérica.
+                    Sin algoritmos. Sin entrenar IA generativa. Solo arte.</p>
+            </div>
+            <div class="header-image">
+                <img src="Img1.png" alt="hola">
+            </div>
+        </div>
+
+        
+    </header>
+
+    <div class="filter-bar" id="filterBar">
+        <span class="filter-bar__label">Categoria</span>
+        <div class="filter-tabs" id="filterTabs">
+            <button class="ft-btn active" data-cat="all">
+                Todo
+            </button>
+            <button class="ft-btn" data-cat="ilustracion">
+                Ilustración
+            </button>
+            <button class="ft-btn" data-cat="animacion">
+                Animación
+            </button>
+            <button class="ft-btn" data-cat="concept-art">
+                Concept Art
+            </button>
+            <button class="ft-btn" data-cat="diseño">
+                Diseño Gráfico
+            </button>
+            <button class="ft-btn" data-cat="tradicional">
+                Tradicional
+            </button>
+        </div>
+
+        <div class="search-bar">
+            <div class="search-box" id="searchBox" role="search">
+                <svg class="search-box__icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="9" cy="9" r="6" />
+                    <path d="M13.5 13.5 18 18" />
+                </svg>
+
+                <input type="search" id="searchInput" class="search-box__input"
+                    placeholder="Buscar artista, obra, disciplina…" autocomplete="off" spellcheck="false"
+                    aria-label="Buscar en el muro" />
+
+                <!-- Botón limpiar (solo visible cuando hay texto) -->
+                <button class="search-box__clear" id="searchClear" aria-label="Limpiar búsqueda" tabindex="-1" hidden>
+                    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        aria-hidden="true">
+                        <path d="M2 2l10 10M12 2 2 12" />
+                    </svg>
+                </button>
+
+                <!-- Dropdown de sugerencias -->
+                <ul class="search-box__suggestions" id="searchSuggestions" role="listbox" aria-label="Sugerencias"
+                    hidden></ul>
+            </div>
+        </div>
+
+        <div class="filter-bar__right">
+            <select class="sort-select" id="sortSelect" aria-label="Ordenar por">
+                <option value="recent">Más recientes</option>
+                <option value="popular">Más populares</option>
+                <option value="az">A → Z</option>
+            </select>
+        </div>
+    </div>
+
+    <main class="masonry-wrapper">
+        <div class="masonry" id="masonryGrid" role="list">
+            <!-- Cards inserted by JS -->
+        </div>
+        <div class="empty-state" id="emptyState">
+            <div class="es-icon">🎨</div>
+            <h3>Sin resultados</h3>
+            <p>Prueba con otra disciplina o espera a que más artistas se sumen.</p>
+        </div>
+    </main>
+
+    <div class="load-more-wrap">
+        <button class="btn-load" id="loadMore">
+            <span>Cargar más obras</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M7 2v10M2 7l5 5 5-5" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- MODAL LIGHTBOX -->
+    <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-label="Vista de obra">
+        <div class="modal" id="modal">
+            <button class="modal__close" id="modalClose" aria-label="Cerrar">✕</button>
+            <canvas class="modal__artwork" id="modalArtwork" width="680" height="420"></canvas>
+            <div class="modal__body">
+                <div class="modal__author-row">
+                    <canvas class="modal__av" id="modalAv" width="44" height="44"></canvas>
+                    <div class="modal__author-info">
+                        <strong id="modalAuthorName">—</strong>
+                        <span id="modalAuthorTag">—</span>
+                    </div>
+                </div>
+                <h2 class="modal__title" id="modalTitle">—</h2>
+                <p class="modal__desc" id="modalDesc">—</p>
+                <div class="modal__tags" id="modalTags"></div>
+                <div class="modal__actions">
+                    <a href="#" class="btn--cta">✉ Enviar propuesta</a>
+                    <a href="portafolio.html" class="btn--ghost">Ver portafolio completo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER MINI -->
+    <footer class="footer-mini">
+        <a href="index.html" class="nav__logo"><span class="logo-v">V</span>enusArt</a>
+        <span>© 2025 VenusArt. Todos los derechos reservados.</span>
+        <span class="shield">🛡 Tu arte, tu propiedad. Siempre.</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

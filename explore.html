@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VenusArt — Tu arte. Tu plataforma. Tu propiedad.</title>
+    <link rel="stylesheet" href="explore.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Kalam:wght@300;400;700&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+
+    <!-- NOISE OVERLAY -->
+    <div class="noise" aria-hidden="true"></div>
+
+    <!-- ══════════ NAV ══════════ -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav__logo">
+            Venus<span class="logo-v">Art</span>
+        </a>
+
+        <ul class="nav__links">
+            <li><a href="#problema">El problema</a></li>
+            <li><a href="#solucion">Solución</a></li>
+            <li><a href="#funciones">Funciones</a></li>
+            <li><a href="#muro">Descubrimiento</a></li>
+        </ul>
+
+        <div class="nav__actions">
+            <a href="index.html" class="btn btn--primary btn--explore-nav">✦ Explorar portafolios</a>
+            <a href="#" class="nav__login">Iniciar sesión</a>
+            <a href="#" class="btn btn--nav">Unirme gratis</a>
+        </div>
+
+        <button class="nav__burger" id="burger" aria-label="Menú">
+            <span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu__close" id="menuClose">✕</button>
+        <nav>
+            <a href="#problema" class="m-link">El problema</a>
+            <a href="#solucion" class="m-link">Solución</a>
+            <a href="#funciones" class="m-link">Funciones</a>
+            <a href="#muro" class="m-link">Descubrimiento</a>
+            <a href="#comunidad" class="m-link">Comunidad</a>
+        </nav>
+        <a href="#" class="btn btn--primary" style="margin-top:2rem">Unirme gratis</a>
+        <a href="index.html" class="btn btn--primary btn--explore-nav" style="margin-top:2rem">✦ Explorar portafolios</a>
+    </div>
+
+    <!-- ══════════ HERO ══════════ -->
+    <section class="hero" id="hero">
+        <div class="hero__bg-text" aria-hidden="true">VENUS</div>
+
+        <div class="hero__left">
+            <div class="hero__badge reveal">        
+            </div>
+
+            <h1 class="hero__title reveal">
+                Tu arte.<br />
+                <em>Tu plataforma.</em><br />
+                Tu propiedad.
+            </h1>
+
+            <p class="hero__desc reveal">
+                La plataforma diseñada para ilustradores, animadores y diseñadores gráficos que están hartos de
+                algoritmos injustos, compresión que arruina su trabajo y políticas que roban su arte para entrenar IAs.
+            </p>
+
+            <div class="hero__ctas reveal">
+                <a href="#" class="btn btn--primary btn--lg">Crear mi portafolio gratis</a>
+                
+            </div>
+
+            <div class="hero__proof reveal">
+                
+            </div>
+        </div>
+
+        <div class="hero__right reveal-scale">
+            <!-- Mockup portafolio -->
+            <div class="portfolio-mockup">
+                <div class="pm__bar">
+                    <span class="pm__dot pm__dot--r"></span>
+                    <span class="pm__dot pm__dot--y"></span>
+                    <span class="pm__dot pm__dot--g"></span>
+                    <div class="pm__url">venusart.co/<strong>luna.art</strong></div>
+                </div>
+                <div class="pm__body">
+                    <div class="pm__profile">
+                        <div class="pm__avatar"></div>
+                        <div class="pm__info">
+                            <strong>Luna Vásquez</strong>
+                            <span>Ilustradora · Medellín, CO</span>
+                        </div>
+                        <div class="pm__shield" title="Derechos protegidos">🛡</div>
+                    </div>
+                    <div class="pm__grid">
+                        <div class="pm__work pm__work--1"></div>
+                        <div class="pm__work pm__work--2"></div>
+                        <div class="pm__work pm__work--3"></div>
+                        <div class="pm__work pm__work--4"></div>
+                        <div class="pm__work pm__work--5"></div>
+                        <div class="pm__work pm__work--6"></div>
+                    </div>
+                    <a href="#" class="pm__contact">✉ Enviar propuesta de trabajo</a>
+                </div>
+            </div>
+
+            <!-- Tag flotante -->
+            <div class="float-tag float-tag--hd">
+                <span class="ft-icon">✦</span> Alta resolución sin compresión
+            </div>
+            <div class="float-tag float-tag--link">
+                <span class="ft-icon">🔗</span> venusart.co/luna.art
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ PROBLEMA ══════════ -->
+    <section class="problem" id="problema">
+        <div class="problem__label">
+            <span>— El ecosistema está roto</span>
+        </div>
+
+        <div class="problem__header">
+            <h2 class="reveal">Los creadores merecen <em>mejor</em></h2>
+            <p class="reveal">Cuatro problemas reales que destruyen la carrera de miles de artistas digitales cada día.
+            </p>
+        </div>
+
+        <div class="problem__grid">
+            <div class="pcard reveal">
+                <div class="pcard__icon">⚡</div>
+                <h3>Algoritmos que penalizan</h3>
+                <p>Las redes sociales priorizan contenido de entretenimiento rápido. El arte detallado tiene menos
+                    alcance orgánico que un video de 10 segundos.</p>
+            </div>
+            <div class="pcard pcard--accent reveal">
+                <div class="pcard__icon">🗃️</div>
+                <h3>Compresión que destruye</h3>
+                <p>Instagram, X y LinkedIn comprimen agresivamente las imágenes. Tu obra de 4K llega al cliente como un
+                    JPEG de baja calidad. Tu trabajo se ve mal y tú pierdes credibilidad.</p>
+            </div>
+            <div class="pcard reveal">
+                <div class="pcard__icon">🤖</div>
+                <h3>Tu arte entrena IAs. Tu arte no es tuyo</h3>
+                <p>Las políticas de uso de las grandes plataformas incluyen cláusulas que permiten usar tu contenido
+                    para entrenar modelos de IA. Sin compensación. Sin consentimiento real.</p>
+            </div>
+            <div class="pcard pcard--accent reveal">
+                <div class="pcard__icon">🛠️</div>
+                <h3>Las redes no están hechas para artistas
+                </h3>
+                <p>LinkedIn no está diseñado para portafolios creativos. Behance tiene alcance limitado. Dribbble es
+                    exclusivo. No existe un espacio hecho específicamente para ti.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ SOLUCIÓN ══════════ -->
+    <section class="solution" id="solucion">
+        <div class="solution__inner">
+            <div class="solution__text">
+                <p class="section-tag reveal">— La respuesta</p>
+                <h2 class="reveal">Un entorno digital construido <em>desde cero para artistas</em></h2>
+                <p class="reveal">VenusArt no es otra red social adaptada. Es una plataforma diseñada específicamente
+                    para ilustradores, animadores y diseñadores gráficos que quieren visibilidad sin sacrificar su obra.
+                </p>
+
+                <ul class="solution__list reveal">
+                    <li>
+                        <span class="sl-check">✓</span>
+                        <div>
+                            <strong>Sin compresión.</strong> Tus obras se exhiben en la resolución que tú eliges.
+                        </div>
+                    </li>
+                    <li>
+                        <span class="sl-check">✓</span>
+                        <div>
+                            <strong>Sin entrenamiento de IA.</strong> Tu contenido no se usa para ningún modelo. Jamás.
+                        </div>
+                    </li>
+                    <li>
+                        <span class="sl-check">✓</span>
+                        <div>
+                            <strong>Sin algoritmos opacos.</strong> El muro de descubrimiento prioriza calidad, no
+                            engagement.
+                        </div>
+                    </li>
+                    <li>
+                        <span class="sl-check">✓</span>
+                        <div>
+                            <strong>Tú eres el dueño absoluto.</strong> Derechos de autor completos, garantizados
+                            contractualmente.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="solution__visual reveal-scale">
+                <div class="vs-card">
+                    <div class="vs-row vs-row--head">
+                        <span></span>
+                        <span class="vs-col vs-col--bad">Otras plataformas</span>
+                        <span class="vs-col vs-col--good">VenusArt</span>
+                    </div>
+                    <div class="vs-row">
+                        <span>Alta resolución</span>
+                        <span class="vs-col"><i class="x">✗</i></span>
+                        <span class="vs-col"><i class="chk">✓</i></span>
+                    </div>
+                    <div class="vs-row">
+                        <span>Sin uso en IA</span>
+                        <span class="vs-col"><i class="x">✗</i></span>
+                        <span class="vs-col"><i class="chk">✓</i></span>
+                    </div>
+                    <div class="vs-row">
+                        <span>Portafolio personalizado</span>
+                        <span class="vs-col"><i class="x">✗</i></span>
+                        <span class="vs-col"><i class="chk">✓</i></span>
+                    </div>
+                    <div class="vs-row">
+                        <span>Contacto directo clientes</span>
+                        <span class="vs-col"><i class="x">✗</i></span>
+                        <span class="vs-col"><i class="chk">✓</i></span>
+                    </div>
+                    <div class="vs-row">
+                        <span>Derechos garantizados</span>
+                        <span class="vs-col"><i class="x">✗</i></span>
+                        <span class="vs-col"><i class="chk">✓</i></span>
+                    </div>
+                    <div class="vs-row">
+                        <span>Diseñado para artistas</span>
+                        <span class="vs-col"><i class="x">✗</i></span>
+                        <span class="vs-col"><i class="chk">✓</i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ FUNCIONES ══════════ -->
+    <section class="features" id="funciones">
+        <div class="features__header">
+            <p class="section-tag reveal">— Qué ofrece la plataforma</p>
+            <h2 class="reveal">Todo lo que necesitas.<br /><em>Nada de lo que no quieres.</em></h2>
+        </div>
+
+        <div class="features__grid">
+
+            <!-- F1: Micrositio -->
+            <div class="fcard fcard--full reveal">
+                <div class="fcard__content">
+                    <div class="fcard__num">01</div>
+                    <h3>Micro-sitio personal</h3>
+                    <p>Tu propio portafolio con URL personalizada — <strong>venusart.com/tuUsuario</strong> — listo en
+                        minutos. Ordena tus proyectos como quieras. Por importancia, por estilo, por temática, en carpetas. Tú eliges</p>
+                    <ul>
+                        <li>URL propia e irrepetible</li>
+                        <li>No importa a qué te dediques, aquí tienes un lugar: ilustración, animación, diseño, etc.</li>
+                        <li>Secciones: sobre mí, obra, tarifas, contacto</li>
+                        <li>SEO optimizado para que te encuentren</li>
+                    </ul>
+                </div>
+                <div class="fcard__visual fcard__visual--site">
+                    <div class="mini-browser">
+                        <div class="mb__bar">
+                            <div class="mb__dots"><span></span><span></span><span></span></div>
+                            <div class="mb__addr">venusart.com/<strong>mateo.design</strong></div>
+                        </div>
+                        <div class="mb__screen">
+                            <div class="mb__hero-strip"></div>
+                            <div class="mb__content">
+                                <div class="mb__avatar"></div>
+                                <div class="mb__lines">
+                                    <span style="width:60%"></span>
+                                    <span style="width:40%"></span>
+                                </div>
+                                <div class="mb__works">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- F2: Muro -->
+            <div class="fcard reveal">
+                <div class="fcard__num">02</div>
+                <h3>Muro de descubrimiento</h3>
+                <p>Un feed dinámico donde tu trabajo llega a quienes realmente buscan contratar talento creativo. Sin
+                    algoritmos que penalicen la calidad.</p>
+                <div class="fcard__pill-list">
+                    <span>Filtro por estilo</span>
+                    <span>Filtro por disciplina</span>
+                    <span>Filtro por país</span>
+                    <span>Disponibilidad</span>
+                </div>
+            </div>
+
+            <!-- F3: Contacto -->
+            <div class="fcard fcard--purple reveal">
+                <div class="fcard__num">03</div>
+                <h3>Puente de contacto directo</h3>
+                <p>Empresas y clientes te envían propuestas directamente. Sin intermediarios, sin comisiones sobre tu
+                    tarifa. Tú negocias, tú decides.</p>
+                <div class="contact-demo">
+                    <div class="cd__msg cd__msg--in">
+                        <p>Hola, vimos tu portafolio. ¿Tienes disponibilidad para un proyecto de branding?</p>
+                        <span>Cliente</span>
+                    </div>
+                    <div class="cd__msg cd__msg--out">
+                        <p>¡Claro! Revisemos los detalles.</p>
+                        <span>Tú</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- F4: Derechos -->
+            <div class="fcard fcard--dark reveal">
+                <div class="fcard__num">04</div>
+                <h3 class="fcard__title">Protección de derechos de autor</h3>
+                <p>Tu obra es tuya. Siempre. Garantizado en los términos de uso con cláusulas legales explícitas que
+                    prohíben el uso de tu contenido para entrenamiento de IA o redistribución sin tu permiso.</p>
+                <div class="shield-visual">
+                    <div class="shield-icon">🛡</div>
+                    <div class="shield-lines">
+                        <span>Anti-scraping activo</span>
+                        <span>Marca de agua digital</span>
+                        <span>Zero-AI training policy</span>
+                        <span>Copyright © preservado</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ══════════ MURO DESCUBRIMIENTO ══════════ -->
+    <section class="discovery" id="muro">
+        <div class="discovery__header">
+            <p class="section-tag reveal">— Muro de descubrimiento</p>
+            <h2 class="reveal">Donde el talento<br /><em>se encuentra con la oportunidad</em></h2>
+            <p class="reveal">Un espacio dinámico, filtrable y sin ruido donde tu obra habla por sí sola.</p>
+        </div>
+
+        <div class="discovery__filters reveal">
+            <button class="df-btn active" data-df="all">Todos</button>
+            <button class="df-btn" data-df="ilustracion">Ilustración</button>
+            <button class="df-btn" data-df="animacion">Animación</button>
+            <button class="df-btn" data-df="diseno">Diseño gráfico</button>
+            <button class="df-btn" data-df="disponible">Disponible ahora</button>
+        </div>
+
+        <div class="discovery__wall" id="discoveryWall">
+            <div class="dw-card" data-df="ilustracion">
+                <div class="dw-card__img dw-img--1"></div>
+                <div class="dw-card__footer">
+                    <div class="dw-card__info">
+                        <strong>Camila R.</strong>
+                        <span>Ilustración editorial</span>
+                    </div>
+                    <span class="dw-badge dw-badge--open">Disponible</span>
+                </div>
+            </div>
+            <div class="dw-card dw-card--tall" data-df="diseno">
+                <div class="dw-card__img dw-img--2"></div>
+                <div class="dw-card__footer">
+                    <div class="dw-card__info">
+                        <strong>Andrés V.</strong>
+                        <span>Diseño gráfico</span>
+                    </div>
+                    <span class="dw-badge">Proyectos activos</span>
+                </div>
+            </div>
+            <div class="dw-card" data-df="animacion">
+                <div class="dw-card__img dw-img--3"></div>
+                <div class="dw-card__footer">
+                    <div class="dw-card__info">
+                        <strong>Sofía M.</strong>
+                        <span>Motion design</span>
+                    </div>
+                    <span class="dw-badge dw-badge--open">Disponible</span>
+                </div>
+            </div>
+            <div class="dw-card" data-df="ilustracion">
+                <div class="dw-card__img dw-img--4"></div>
+                <div class="dw-card__footer">
+                    <div class="dw-card__info">
+                        <strong>Juan C.</strong>
+                        <span>Concept art</span>
+                    </div>
+                    <span class="dw-badge">Proyectos activos</span>
+                </div>
+            </div>
+            <div class="dw-card dw-card--wide" data-df="diseno">
+                <div class="dw-card__img dw-img--5"></div>
+                <div class="dw-card__footer">
+                    <div class="dw-card__info">
+                        <strong>María L.</strong>
+                        <span>Brand identity</span>
+                    </div>
+                    <span class="dw-badge dw-badge--open">Disponible</span>
+                </div>
+            </div>
+            <div class="dw-card" data-df="animacion">
+                <div class="dw-card__img dw-img--6"></div>
+                <div class="dw-card__footer">
+                    <div class="dw-card__info">
+                        <strong>Tomás B.</strong>
+                        <span>2D Animation</span>
+                    </div>
+                    <span class="dw-badge dw-badge--open">Disponible</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ ROADMAP ══════════ -->
+    <section class="roadmap" id="fases">
+        <div class="roadmap__header">
+            <p class="section-tag reveal">— Metodología ágil</p>
+            <h2 class="reveal">Cuatro fases hacia<br /><em>la plataforma perfecta</em></h2>
+        </div>
+        <div class="roadmap__track">
+            <div class="rm-phase reveal">
+                <div class="rm-phase__num">I</div>
+                <div class="rm-phase__body">
+                    <h4>Fundamentos</h4>
+                    <p>Micro-sitios, portafolios personalizados, alta resolución y sistema de derechos de autor.</p>
+                    <span class="rm-tag rm-tag--done">En desarrollo</span>
+                </div>
+            </div>
+            <div class="rm-connector" aria-hidden="true"></div>
+            <div class="rm-phase reveal">
+                <div class="rm-phase__num">II</div>
+                <div class="rm-phase__body">
+                    <h4>Descubrimiento</h4>
+                    <p>Muro dinámico, filtros avanzados y sistema de recomendación sin algoritmos opacos.</p>
+                    <span class="rm-tag rm-tag--done">En desarrollo</span>
+                </div>
+            </div>
+            <div class="rm-connector" aria-hidden="true"></div>
+            <div class="rm-phase reveal">
+                <div class="rm-phase__num">III</div>
+                <div class="rm-phase__body">
+                    <h4>Conexión</h4>
+                    <p>Puente de contacto, sistema de propuestas y comisiones directas entre artistas y empresas.</p>
+                    <span class="rm-tag">Planificado</span>
+                </div>
+            </div>
+            <div class="rm-connector" aria-hidden="true"></div>
+            <div class="rm-phase reveal">
+                <div class="rm-phase__num">IV</div>
+                <div class="rm-phase__body">
+                    <h4>Comunidad</h4>
+                    <p>Espacios colaborativos, mentorías, recursos educativos y eventos para la comunidad creativa.</p>
+                    <span class="rm-tag">Futuro</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ COMUNIDAD ══════════ -->
+    <section class="community" id="comunidad">
+        <div class="community__inner">
+            <div class="community__text">
+                <p class="section-tag reveal">— Proyecciones</p>
+                <h2 class="reveal">Una comunidad donde<br />el artista es <em>el centro</em></h2>
+                <p class="reveal">VenusArt democratiza la visibilidad del talento independientemente del presupuesto en
+                    publicidad o los seguidores previos. Si tu trabajo es bueno, llega a quienes lo necesitan.</p>
+                <div class="community__stats reveal">
+                    <div class="cstat">
+                        <span class="cstat__n" data-target="2400">0</span>
+                        <span>Artistas activos</span>
+                    </div>
+                    <div class="cstat">
+                        <span class="cstat__n" data-target="100">0</span>
+                        <span>% Anti-IA training</span>
+                    </div>
+                </div>
+            </div>
+            <div class="community__wall reveal-scale">
+                <div class="cw-item cw-item--1">
+                    <div class="cw-avatar"></div>
+                    <div class="cw-text">
+                        <strong>@daniela.ilustra</strong>
+                        <p>"Conseguí 3 clientes en mi primera semana. Sin pagar ads, sin suerte. Solo buen trabajo
+                            visible."</p>
+                    </div>
+                </div>
+                <div class="cw-item cw-item--2">
+                    <div class="cw-avatar"></div>
+                    <div class="cw-text">
+                        <strong>@estudio.noma</strong>
+                        <p>"Encontramos a nuestro ilustrador de cabecera en 20 minutos de búsqueda filtrada."</p>
+                    </div>
+                </div>
+                <div class="cw-item cw-item--3">
+                    <div class="cw-avatar"></div>
+                    <div class="cw-text">
+                        <strong>@motionbytomas</strong>
+                        <p>"Por fin una plataforma donde mi animación se ve como yo la hice. Sin pixelación, sin
+                            compresión."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════ CTA FINAL ══════════ -->
+    <section class="cta-final">
+        <div class="cta-final__bg" aria-hidden="true">
+            <div class="ctabg-blob ctabg-blob--1"></div>
+            <div class="ctabg-blob ctabg-blob--2"></div>
+        </div>
+        <div class="cta-final__content reveal">
+            <p class="section-tag">— Empieza hoy</p>
+            <h2>Tu trabajo merece<br /><em>ser visto como es</em></h2>
+            <p>Crea tu portafolio en minutos. Gratis. Sin tarjeta de crédito. Sin letra pequeña sobre tus derechos.</p>
+            <div class="cta-final__actions">
+                <a href="#" class="btn btn--primary btn--lg">Crear mi portafolio</a>
+            </div>
+            <p class="cta-final__legal">Al registrarte, tus derechos de autor quedan protegidos por nuestros términos.
+                Tu obra nunca se usará para entrenar IA.</p>
+        </div>
+    </section>
+
+    <!-- ══════════ FOOTER ══════════ -->
+    <footer class="footer">
+        <div class="footer__top">
+            <div class="footer__brand">
+                <a href="#" class="nav__logo"><span class="logo-v">V</span>enusArt</a>
+                <p>La plataforma que pone al artista en el centro.</p>
+                <div class="footer__social">
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="Twitter">TW</a>
+                    <a href="#" aria-label="LinkedIn">LI</a>
+                    <a href="#" aria-label="Behance">BE</a>
+                </div>
+            </div>
+            <div class="footer__cols">
+                <div>
+                    <h5>Plataforma</h5>
+                    <a href="#">Cómo funciona</a>
+                    <a href="#">Portafolios</a>
+                    <a href="#">Muro de descubrimiento</a>
+                    <a href="#">Para empresas</a>
+                </div>
+                <div>
+                    <h5>Legal</h5>
+                    <a href="#">Términos de uso</a>
+                    <a href="#">Derechos de autor</a>
+                    <a href="#">Política Anti-IA</a>
+                    <a href="#">Privacidad</a>
+                </div>
+                <div>
+                    <h5>Comunidad</h5>
+                    <a href="#">Blog</a>
+                    <a href="#">Recursos</a>
+                    <a href="#">Newsletter</a>
+                    <a href="#">Contacto</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <span>© 2025 VenusArt. Todos los derechos reservados.</span>
+            <span class="footer__shield">🛡 Tu arte, tu propiedad. Siempre.</span>
+        </div>
+    </footer>
+
+    <script src="explore.js"></script>
+</body>
+
+</html>
