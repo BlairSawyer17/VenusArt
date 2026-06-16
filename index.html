@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VenusArt | Tu Portafolio Online</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="explore.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,16 +20,19 @@
 </head>
 
 <body>
-    <nav class="nav">
-        <div class="nav-logo">
-            <a href="#" class="nav-logo-text">
-                Venus<span class="span-logo">Art</span>
-            </a>
+    <nav class="nav" id="nav">
+        <a href="index.html" class="nav__logo">
+            Venus<span class="logo-v">Art</span>
+        </a>
+
+        <div class="nav__actions">
+            <a href="explore.html" class="nav__login">Saber más</a>
+            <a href="registro.html" class="btn btn--nav">Unirme gratis</a>
         </div>
-        <div class="nav-btn">
-            <a href="explore.html" class="mas-info">Saber más</a>
-            <a href="#" class="log-in">Inicia sesión</a>
-        </div>
+
+        <button class="nav__burger" id="burger" aria-label="Menú">
+            <span></span><span></span>
+        </button>
     </nav>
 
     <header class="header">
@@ -152,7 +156,7 @@
 
     <!-- FOOTER MINI -->
     <footer class="footer-mini">
-        <a href="index.html" class="nav__logo"><span class="logo-v">V</span>enusArt</a>
+        <a href="index.html" class="nav__logo"><span class="logo-v">Venus</span>Art</a>
         <span>© 2025 VenusArt. Todos los derechos reservados.</span>
         <span class="shield">🛡 Tu arte, tu propiedad. Siempre.</span>
     </footer>

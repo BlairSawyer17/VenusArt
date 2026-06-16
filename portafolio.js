@@ -602,21 +602,17 @@ function renderLightbox(){
   if(!work)return;
   const canvas=document.getElementById('lbCanvas');
   if(work.imageURL){
-    /* Dibujar imagen real con marca de agua encima, respetando la proporción */
+    /* Dibujar imagen real con marca de agua encima */
     const img=new Image();
     img.onload=()=>{
-      const MAX_W=720;
-      const ratio=img.naturalHeight/img.naturalWidth;
-      const w=MAX_W;
-      const h=Math.round(w*ratio);
-      canvas.width=w; canvas.height=h;
+      canvas.width=720;canvas.height=420;
       const ctx=canvas.getContext('2d');
-      ctx.drawImage(img,0,0,w,h);
+      ctx.drawImage(img,0,0,720,420);
       /* marca de agua */
       ctx.save();ctx.globalAlpha=.12;ctx.fillStyle='#fff';
       ctx.font='500 14px Outfit,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';
-      ctx.translate(w/2,h/2);ctx.rotate(-Math.PI/6);
-      for(let x=-w;x<w*2;x+=160){for(let y=-h;y<h*2;y+=80)ctx.fillText('venusart.co/luna.art',x,y);}
+      ctx.translate(360,210);ctx.rotate(-Math.PI/6);
+      for(let x=-720;x<1440;x+=160){for(let y=-420;y<840;y+=80)ctx.fillText('venusart.co/luna.art',x,y);}
       ctx.restore();
     };
     img.src=work.imageURL;
